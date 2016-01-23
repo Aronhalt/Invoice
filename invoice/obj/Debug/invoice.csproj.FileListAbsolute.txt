@@ -1,0 +1,10 @@
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\bin\Debug\invoice.exe.config
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\bin\Debug\invoice.exe
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\bin\Debug\invoice.pdb
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\obj\Debug\invoice.csprojResolveAssemblyReference.cache
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\obj\Debug\invoice.Properties.Resources.resources
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\obj\Debug\invoice.csproj.GenerateResource.Cache
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\obj\Debug\invoice.exe
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\obj\Debug\invoice.pdb
+c:\users\spoiler\documents\visual studio 2015\Projects\invoice\invoice\obj\Debug\invoice.InvoiceForm.resources
+C:\Users\Spoiler\Documents\Visual Studio 2015\Projects\invoice\invoice\obj\Debug\invoice.fileBrowser.resources
