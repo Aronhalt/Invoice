@@ -162,12 +162,12 @@ namespace invoice
                 //empty
                 MessageBox.Show("Error: no title!");
             }
-            else if(TasksListView.Items.Count == 0)
+            else if (TasksListView.Items.Count == 0)
             {
                 MessageBox.Show("Error: no tasks!");
                 //empty
             }
-            else if(CompletionTimePicker.Value < InvoiceDatePicker.Value)
+            else if (CompletionTimePicker.Value < InvoiceDatePicker.Value)
             {
                 //date incorrect
                 MessageBox.Show("Error: date incorrect!");
@@ -175,11 +175,20 @@ namespace invoice
             else
             {
                 //save
-                System.IO.StreamWriter file = new System.IO.StreamWriter(filePath + "/invoice/" + TitleTextBox.Text.Trim()+ ".invoice");
-                string invoice = 
-                    TitleTextBox.Text + "," + AuthorTextBox.Text.Trim() + "," +
+                System.IO.StreamWriter file = new System.IO.StreamWriter(filePath + "/invoice/" + TitleTextBox.Text.Trim() + ".invoice");
+                /*first line in invoice has a format of
+                   Task
+                   Total
+                   Author
+                   Invoice creation date
+                   Completion Date
+                   Notes
+                   */
+                string invoice =
+                    TitleTextBox.Text + "," + TotalText.Text + "," + AuthorTextBox.Text.Trim() + "," +
                     InvoiceDatePicker.Value + "," + CompletionTimePicker.Value + "," + NotesTextBox.Text.Trim();
-                    
+                // lines after this are items in the list view
+                // these items are each a line consisting of the task and payment seperated by a comma
                 file.WriteLine(invoice);
                 foreach (ListViewItem item in TasksListView.Items)
                 {
@@ -187,13 +196,15 @@ namespace invoice
                 }
                 file.Close();
                 MessageBox.Show("Saved!" + invoice);
+                
                 this.Close();
             }
+        }
             
             // textboxes
             // completion time is a valid date
             // payment is possitive
-        }
+
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 

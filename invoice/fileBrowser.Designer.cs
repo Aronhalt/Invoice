@@ -29,24 +29,72 @@
         private void InitializeComponent()
         {
             this.newButton = new System.Windows.Forms.Button();
+            this.FileBrowserListView = new System.Windows.Forms.ListView();
+            this.Task = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CreationDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CompletionDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // newButton
             // 
-            this.newButton.Location = new System.Drawing.Point(557, 536);
+            this.newButton.Location = new System.Drawing.Point(842, 536);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(198, 41);
             this.newButton.TabIndex = 0;
             this.newButton.Text = "New";
             this.newButton.UseVisualStyleBackColor = true;
             // 
-            // Form2
+            // FileBrowserListView
+            // 
+            this.FileBrowserListView.AutoArrange = false;
+            this.FileBrowserListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Task,
+            this.Total,
+            this.User,
+            this.CreationDate,
+            this.CompletionDate});
+            this.FileBrowserListView.Location = new System.Drawing.Point(13, 27);
+            this.FileBrowserListView.Name = "FileBrowserListView";
+            this.FileBrowserListView.Size = new System.Drawing.Size(1027, 498);
+            this.FileBrowserListView.TabIndex = 1;
+            this.FileBrowserListView.UseCompatibleStateImageBehavior = false;
+            this.FileBrowserListView.View = System.Windows.Forms.View.Details;
+            // 
+            // Task
+            // 
+            this.Task.Text = "Task";
+            this.Task.Width = 355;
+            // 
+            // Total
+            // 
+            this.Total.Text = "Total";
+            this.Total.Width = 75;
+            // 
+            // User
+            // 
+            this.User.Text = "User";
+            this.User.Width = 104;
+            // 
+            // CreationDate
+            // 
+            this.CreationDate.Text = "CreationDate";
+            this.CreationDate.Width = 99;
+            // 
+            // CompletionDate
+            // 
+            this.CompletionDate.Text = "CompletionDate";
+            this.CompletionDate.Width = 110;
+            // 
+            // fileBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 589);
+            this.ClientSize = new System.Drawing.Size(1052, 589);
+            this.Controls.Add(this.FileBrowserListView);
             this.Controls.Add(this.newButton);
-            this.Name = "Form2";
+            this.Name = "fileBrowser";
             this.Text = "Form2";
             this.ResumeLayout(false);
 
@@ -55,5 +103,11 @@
         #endregion
 
         private System.Windows.Forms.Button newButton;
+        private System.Windows.Forms.ListView FileBrowserListView;
+        private System.Windows.Forms.ColumnHeader Task;
+        private System.Windows.Forms.ColumnHeader Total;
+        private System.Windows.Forms.ColumnHeader User;
+        private System.Windows.Forms.ColumnHeader CreationDate;
+        private System.Windows.Forms.ColumnHeader CompletionDate;
     }
 }
