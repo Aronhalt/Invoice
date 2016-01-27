@@ -38,7 +38,7 @@ namespace invoice
                 fileReader = new System.IO.StreamReader(filePath + file);
                 //grab the first line of the file which is the info of the invoice
                 line = fileReader.ReadLine();
-                MessageBox.Show(line);
+                //MessageBox.Show(line);
                 /*first line in invoice has a format of
                     Task
                     Total
@@ -56,6 +56,8 @@ namespace invoice
                 
              }
             newButton.Click += new EventHandler(newButton_click);
+            deleteButton.Click += new EventHandler(deleteButton_click);
+            editButton.Click += new EventHandler(editButton_click);
         }
         void newButton_click(object sender, EventArgs e)
         {
@@ -63,7 +65,7 @@ namespace invoice
             newInvoice.ShowDialog();
             update();
         }
-       public void update()
+       private void update()
        {
             string[] addList = new string[5];
             string line;
@@ -87,6 +89,50 @@ namespace invoice
                 }
             }
        }
+        private void deleteButton_click(object sender, EventArgs e)
+        {
+            if (FileBrowserListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Error: no files selected!");
+            }
+            else if (FileBrowserListView.MultiSelect == true)
+            {
+                foreach (ListViewItem item in FileBrowserListView.SelectedItems)
+                {
+                    FileBrowserListView.Items.Remove(item);
+
+                }
+            }
+            else
+            {
+                FileBrowserListView.SelectedItems[0].Remove();
+            }
+        }
+        private void editButton_click(object sender, EventArgs e)
+        {
+            if (FileBrowserListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Error: no files selected!");
+            }
+            else if (FileBrowserListView.SelectedItems.Count == 1)
+            {
+                try {
+                    MessageBox.Show(FileBrowserListView.SelectedItems[0].SubItems[0].Text.ToString() + ".invoice");
+                    InvoiceForm newInvoice = new InvoiceForm(FileBrowserListView.SelectedItems[0].SubItems[0].Text.ToString() + ".invoice");
+                    newInvoice.ShowDialog();
+                    update();
+                }
+                catch
+                {
+                    //invoiceform not init correctly
+                    MessageBox.Show("invoice error");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error: Can only edit one invoice at a time!");
+            }
+        }
 
 }
 }

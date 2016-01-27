@@ -165,8 +165,8 @@
             this.Task,
             this.Payment});
             this.TasksListView.FullRowSelect = true;
+            this.TasksListView.HideSelection = false;
             this.TasksListView.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TasksListView.LabelEdit = true;
             this.TasksListView.Location = new System.Drawing.Point(22, 87);
             this.TasksListView.Name = "TasksListView";
             this.TasksListView.Size = new System.Drawing.Size(775, 198);

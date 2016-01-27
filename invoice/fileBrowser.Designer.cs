@@ -35,6 +35,8 @@
             this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CreationDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CompletionDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.editButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // newButton
@@ -87,11 +89,31 @@
             this.CompletionDate.Text = "CompletionDate";
             this.CompletionDate.Width = 110;
             // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(13, 532);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(155, 45);
+            this.editButton.TabIndex = 2;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(426, 531);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(132, 45);
+            this.deleteButton.TabIndex = 3;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            // 
             // fileBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 589);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.FileBrowserListView);
             this.Controls.Add(this.newButton);
             this.Name = "fileBrowser";
@@ -109,5 +131,7 @@
         private System.Windows.Forms.ColumnHeader User;
         private System.Windows.Forms.ColumnHeader CreationDate;
         private System.Windows.Forms.ColumnHeader CompletionDate;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button deleteButton;
     }
 }
