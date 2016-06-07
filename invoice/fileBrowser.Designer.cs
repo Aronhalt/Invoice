@@ -111,13 +111,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1052, 589);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.FileBrowserListView);
             this.Controls.Add(this.newButton);
             this.Name = "fileBrowser";
-            this.Text = "Form2";
+            this.Text = "Invoice File Browser";
+            this.Load += new System.EventHandler(this.fileBrowser_Load);
             this.ResumeLayout(false);
 
         }

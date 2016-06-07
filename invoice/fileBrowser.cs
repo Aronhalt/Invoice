@@ -91,6 +91,11 @@ namespace invoice
        }
         private void deleteButton_click(object sender, EventArgs e)
         {
+            //for each selected item
+            //find file in file list
+            //delete file
+            //remove file from file list and listview
+            d = new DirectoryInfo(filePath);
             if (FileBrowserListView.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Error: no files selected!");
@@ -99,8 +104,21 @@ namespace invoice
             {
                 foreach (ListViewItem item in FileBrowserListView.SelectedItems)
                 {
-                    FileBrowserListView.Items.Remove(item);
-
+                    try
+                    {
+                        DialogResult result = MessageBox.Show("Are you sure you want to delete \"" + item.SubItems[0].Text.ToString() + ".invoice\"","Delete confirmation", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            File.Delete(filePath + item.SubItems[0].Text.ToString() + ".invoice");
+                            FileBrowserListView.Items.Remove(item);
+                            fileList.Remove(item.SubItems[0].Text.ToString());
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error: "+ item.SubItems[0].Text.ToString() +" couldnt be deleted");
+                    }
+                    
                 }
             }
             else
@@ -117,7 +135,7 @@ namespace invoice
             else if (FileBrowserListView.SelectedItems.Count == 1)
             {
                 try {
-                    MessageBox.Show(FileBrowserListView.SelectedItems[0].SubItems[0].Text.ToString() + ".invoice");
+                    //MessageBox.Show(filePath + " " + FileBrowserListView.SelectedItems[0].SubItems[0].Text.ToString() + ".invoice");
                     InvoiceForm newInvoice = new InvoiceForm(FileBrowserListView.SelectedItems[0].SubItems[0].Text.ToString() + ".invoice");
                     newInvoice.ShowDialog();
                     update();
@@ -134,5 +152,9 @@ namespace invoice
             }
         }
 
-}
+        private void fileBrowser_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
