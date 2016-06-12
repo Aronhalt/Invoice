@@ -277,9 +277,11 @@
             // 
             // SaveButton
             // 
+            this.SaveButton.AutoSize = true;
+            this.SaveButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.SaveButton.Location = new System.Drawing.Point(754, 404);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(165, 49);
+            this.SaveButton.Size = new System.Drawing.Size(50, 27);
             this.SaveButton.TabIndex = 23;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
