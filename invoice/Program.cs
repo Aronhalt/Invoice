@@ -16,7 +16,9 @@ namespace invoice
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fileBrowser());
+            connectionType ct = new connectionType();
+            ct.Show();
+            Application.Run();
         }
     }
 }

@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="connectionType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="connectionType.Designer.cs">
+      <DependentUpon>connectionType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs" />
     <Compile Include="invoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +67,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerCommands.cs" />
+    <EmbeddedResource Include="connectionType.resx">
+      <DependentUpon>connectionType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="invoiceForm.resx">
       <DependentUpon>invoiceForm.cs</DependentUpon>
     </EmbeddedResource>

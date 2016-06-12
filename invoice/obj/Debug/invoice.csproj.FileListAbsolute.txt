@@ -18,3 +18,4 @@ C:\Users\Spoiler\Documents\GitHub\Invoice\invoice\obj\Debug\invoice.InvoiceForm.
 C:\Users\Spoiler\Documents\GitHub\Invoice\invoice\obj\Debug\invoice.fileBrowser.resources
 C:\Users\Spoiler\Documents\GitHub\Invoice\invoice\obj\Debug\invoice.Properties.Resources.resources
 C:\Users\Spoiler\Documents\GitHub\Invoice\invoice\obj\Debug\invoice.csproj.GenerateResource.Cache
+C:\Users\Spoiler\Documents\GitHub\Invoice\invoice\obj\Debug\invoice.connectionType.resources

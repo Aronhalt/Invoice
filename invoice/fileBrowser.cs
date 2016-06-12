@@ -20,6 +20,8 @@ namespace invoice
         public fileBrowser()
         {
             InitializeComponent();
+            if(Globals.dataType == Globals.DataType.Local)
+            { 
             author = "SW";
             string[] addList = new string[5];
             string line;
@@ -31,28 +33,29 @@ namespace invoice
             System.IO.StreamReader fileReader;
             ListViewItem addItem;
 
-            //populate the Listview with invoices
-            foreach (var file in d.GetFiles("*.invoice"))
-             {
+                //populate the Listview with invoices
+                foreach (var file in d.GetFiles("*.invoice"))
+                {
 
-                fileReader = new System.IO.StreamReader(filePath + file);
-                //grab the first line of the file which is the info of the invoice
-                line = fileReader.ReadLine();
-                //MessageBox.Show(line);
-                /*first line in invoice has a format of
-                    Task
-                    Total
-                    Author
-                    Invoice creation date
-                    Completion Date
-                    Notes
-                    */
-                //split the info line and parse the line for the important information
-                addList = line.Split(',');
-                addItem = new  ListViewItem(addList);
-                FileBrowserListView.Items.Add(addItem);
-                fileReader.Close();
-                fileList.Add(file.ToString());
+                    fileReader = new System.IO.StreamReader(filePath + file);
+                    //grab the first line of the file which is the info of the invoice
+                    line = fileReader.ReadLine();
+                    //MessageBox.Show(line);
+                    /*first line in invoice has a format of
+                        Task
+                        Total
+                        Author
+                        Invoice creation date
+                        Completion Date
+                        Notes
+                        */
+                    //split the info line and parse the line for the important information
+                    addList = line.Split(',');
+                    addItem = new ListViewItem(addList);
+                    FileBrowserListView.Items.Add(addItem);
+                    fileReader.Close();
+                    fileList.Add(file.ToString());
+                }
                 
              }
             newButton.Click += new EventHandler(newButton_click);
