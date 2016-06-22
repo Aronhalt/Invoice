@@ -15,6 +15,7 @@ namespace invoice
             Server
         };
         public static DataType dataType { get; set; }
+        public static String author { get; set; }
          
 
     }

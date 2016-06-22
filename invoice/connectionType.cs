@@ -17,21 +17,55 @@ namespace invoice
             InitializeComponent();
             LocalButton.Click += new EventHandler(LocalButton_click);
             ServerButton.Click += new EventHandler(ServerButton_click);
+            FormClosing += new FormClosingEventHandler(form_closing);
         }
         void LocalButton_click(object sender, EventArgs e)
         {
-            fileBrowser FB = new fileBrowser();
-            FB.Show();
-            this.Hide();
+            if (validUser())
+            {
+                Globals.author = usernameTxt.Text;
+                fileBrowser FB = new fileBrowser();
+                FB.Show();
+                this.Hide();
+            }
+            else
+            {
+                
+                
+                MessageBox.Show("Invalid Username");
+            }
         }
         void ServerButton_click(object sender, EventArgs e)
         {
-            Globals.dataType = Globals.DataType.Server;
-            //ping database to test connection
-            ServerCommands.closeDB(ServerCommands.connectDB());
-            fileBrowser FB = new fileBrowser();
-            FB.Show();
-            this.Hide();
+            if (validUser())
+            {
+
+                Globals.author = usernameTxt.Text;
+                Globals.dataType = Globals.DataType.Server;
+                //ping database to test connection
+                ServerCommands.closeDB(ServerCommands.connectDB());
+                MessageBox.Show("Connection Successful");
+                fileBrowser FB = new fileBrowser();
+                FB.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username");
+            }
+
+        }
+        Boolean validUser()
+        {
+            if (!usernameTxt.Text.Equals("") && usernameTxt.Text.Length <= 20)
+            {
+                return true;
+            }
+            return false;
+        }
+        void form_closing(Object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

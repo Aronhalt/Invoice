@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.SqlClient;
+
 
 namespace invoice
 {
@@ -18,6 +20,8 @@ namespace invoice
         double total;
         string username;
         bool hasChanged;
+        string taskID;
+        string taskOld;
         public InvoiceForm()
         {
             hasChanged = false;
@@ -25,13 +29,14 @@ namespace invoice
 
             //variables
             DateTime currentDate = DateTime.Now;
-            username = "SW";
+            username = Globals.author;
             AuthorTextBox.Text = username;
             total = 0;
             TotalText.Text = total.ToString();
             CurrentDateTextBox.Text = currentDate.ToShortDateString();            
             InvoiceDatePicker.Value = currentDate;
             CompletionTimePicker.Value = currentDate;
+            taskID = null;
 
             
 
@@ -49,12 +54,19 @@ namespace invoice
             AddButton.Click += new EventHandler(AddButton_click);
             EditButton.Click += new EventHandler(EditButton_click);
             RemoveButton.Click += new EventHandler(RemoveButton_click);
-            SaveButton.Click += new EventHandler(SaveButton_click);
             TaskText.TextChanged += new EventHandler(invoiceChanged);
             TitleTextBox.TextChanged += new EventHandler(invoiceChanged);
             NotesTextBox.TextChanged += new EventHandler(invoiceChanged);
             CompletionTimePicker.ValueChanged += new EventHandler(invoiceChanged);
             this.FormClosing += new FormClosingEventHandler(invoiceForm_FormClosing);
+            if (Globals.dataType == Globals.DataType.Server)
+            {
+                SaveButton.Click += new EventHandler(SaveButton_click_S);
+            }
+            else
+            {
+                SaveButton.Click += new EventHandler(SaveButton_click_L);
+            }
         }
         //open invoice for editing
         public InvoiceForm(string invoice)
@@ -66,7 +78,7 @@ namespace invoice
             string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "invoice\\");
             ListViewItem item;
             System.IO.StreamReader fileReader;
-
+            taskID = null;
             //formatting
 
             //datepicker
@@ -113,16 +125,7 @@ namespace invoice
                 //set total variable
                 total = double.Parse(TotalText.Text);
 
-                /* string[] addList = new string[2];
-                 addList[0] = "jump off a building";
-                 addList[1] = "35";
-                 ListViewItem addItem = new ListViewItem(addList);
-                 TasksListView.Items.Add(addItem);
-                 addList[0] = "spawn satan";
-                 addList[1] = "666";
-                 addItem = new ListViewItem(addList);
-                 TasksListView.Items.Add(addItem);
-                 */
+
 
             }
             catch
@@ -138,13 +141,108 @@ namespace invoice
             AddButton.Click += new EventHandler(AddButton_click);
             EditButton.Click += new EventHandler(EditButton_click);
             RemoveButton.Click += new EventHandler(RemoveButton_click);
-            SaveButton.Click += new EventHandler(SaveButton_click);
             TaskText.TextChanged += new EventHandler(invoiceChanged);
             TitleTextBox.TextChanged += new EventHandler(invoiceChanged);
             NotesTextBox.TextChanged += new EventHandler(invoiceChanged);
             CompletionTimePicker.ValueChanged += new EventHandler(invoiceChanged);
             this.FormClosing += new FormClosingEventHandler(invoiceForm_FormClosing);
+            if (Globals.dataType == Globals.DataType.Server)
+            {
+                SaveButton.Click += new EventHandler(SaveButton_click_S);
+            }
+            else
+            {
+                SaveButton.Click += new EventHandler(SaveButton_click_L);
+            }
+        }
+        //server invoice
+        public InvoiceForm(string[] invoiceInfo, List<string> tasks, List<string> prices )
+        {
+            InitializeComponent();
+            //variables
+                       
+            
+            ListViewItem item;            
 
+            //formatting
+
+            //datepicker
+            InvoiceDatePicker.Format = DateTimePickerFormat.Custom;
+            CompletionTimePicker.Format = DateTimePickerFormat.Custom;
+            InvoiceDatePicker.CustomFormat = "MM'/'dd'/'yyyy";
+
+            //listview
+            TasksListView.View = View.Details;
+            TasksListView.GridLines = true;
+            TasksListView.FullRowSelect = true;
+            //try: open the file and recreate invoice
+            //catch: file not found error
+            try
+            {
+
+
+
+                /*first line in invoice has a format of
+                Task
+                Total
+                Author
+                Invoice creation date
+                Completion Date
+                Notes
+                */
+                taskOld = invoiceInfo[0];
+                TitleTextBox.Text = invoiceInfo[0];
+                TotalText.Text = invoiceInfo[1];
+                AuthorTextBox.Text = invoiceInfo[2];
+                InvoiceDatePicker.Value = DateTime.Parse(invoiceInfo[3]);
+                CurrentDateTextBox.Text = DateTime.Parse(invoiceInfo[3]).ToShortDateString();
+                CompletionTimePicker.Value = DateTime.Parse(invoiceInfo[4]);
+                NotesTextBox.Text = invoiceInfo[5];
+                taskID = invoiceInfo[6];
+                //retrieve tasks from file and add them to the listview
+                for (int i = 0; i < tasks.Count();i++)
+                {
+                     //add list view item by converting tasks and prices into a format that 
+                     //a listviewitem constructor can use by constructing a string[] of format
+                     // "tasks[i],prices[i]"
+                     // eg "task1","32.1"
+                    item = new ListViewItem( new string[] { tasks[i], prices[i] } );
+                    TasksListView.Items.Add(item);
+                }
+
+
+
+
+                //set total variable
+                total = double.Parse(TotalText.Text);
+
+            }
+            catch
+            {
+                MessageBox.Show("error: something went wrong");
+                this.Close();
+            }
+
+
+
+
+            //configure buttons
+            AddButton.Click += new EventHandler(AddButton_click);
+            EditButton.Click += new EventHandler(EditButton_click);
+            RemoveButton.Click += new EventHandler(RemoveButton_click);
+            TaskText.TextChanged += new EventHandler(invoiceChanged);
+            TitleTextBox.TextChanged += new EventHandler(invoiceChanged);
+            NotesTextBox.TextChanged += new EventHandler(invoiceChanged);
+            CompletionTimePicker.ValueChanged += new EventHandler(invoiceChanged);
+            this.FormClosing += new FormClosingEventHandler(invoiceForm_FormClosing);
+            if (Globals.dataType == Globals.DataType.Server)
+            {
+                SaveButton.Click += new EventHandler(SaveButton_click_S);
+            }
+            else
+            {
+                SaveButton.Click += new EventHandler(SaveButton_click_L);
+            }
         }
 
         private void AddButton_click(object sender, EventArgs e)
@@ -246,7 +344,7 @@ namespace invoice
             }
             TotalText.Text = total.ToString();
         }
-        private void SaveButton_click(object sender, EventArgs e)
+        private void SaveButton_click_L(object sender, EventArgs e)
         {
             string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             //check if all text boxes are filled out correctly
@@ -289,7 +387,55 @@ namespace invoice
                 }
                 file.Close();
                 MessageBox.Show("Saved!" + invoice);
+                hasChanged = false;
+                this.Close();
+            }
+        }
+        private void SaveButton_click_S(object sender, EventArgs e)
+        {
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //check if all text boxes are filled out correctly
+            if (TitleTextBox.Text.Length == 0)
+            {
+                //empty
+                MessageBox.Show("Error: no title!");
+            }
+            else if (TasksListView.Items.Count == 0)
+            {
+                MessageBox.Show("Error: no tasks!");
+                //empty
+            }
+            else if (CompletionTimePicker.Value < InvoiceDatePicker.Value)
+            {
+                //date incorrect
+                MessageBox.Show("Error: date incorrect!");
+            }
+            else
+            {
+                //todo 
+                // save invoice to database]
+                ListViewItem[] items = new ListViewItem[TasksListView.Items.Count];
+                MessageBox.Show(InvoiceDatePicker.Value.ToString());
+                string[] invoice = { 
+
+                   TitleTextBox.Text, AuthorTextBox.Text.Trim(), InvoiceDatePicker.Value.ToString(), CompletionTimePicker.Value.ToString()
+                    , TotalText.Text, NotesTextBox.Text.Trim(),taskID
+                    };
                 
+                TasksListView.Items.CopyTo(items, 0);
+                if (taskID == null)
+                {
+
+                    
+                    ServerCommands.insertDB(invoice, items);
+                }else
+                {
+                    Array.Resize(ref invoice, invoice.Length + 1);
+                    invoice[invoice.Length - 1] = taskOld;
+                    ServerCommands.editDB(invoice, items);
+                }
+
+                hasChanged = false;
                 this.Close();
             }
         }
@@ -314,7 +460,7 @@ namespace invoice
                 DialogResult result = MessageBox.Show("Do you want to save before exiting?", "Dialog Title", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
-                    SaveButton_click(sender, e);
+                    SaveButton.PerformClick();
                     
                 }
                 else if(result == DialogResult.No)

@@ -60,7 +60,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 17);
+            this.label1.Size = new System.Drawing.Size(34, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Title";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -78,7 +78,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(800, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 17);
+            this.label2.Size = new System.Drawing.Size(81, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "invoice date";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -88,7 +88,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(16, 62);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 17);
+            this.label3.Size = new System.Drawing.Size(53, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Subject";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -98,7 +98,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(19, 402);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 17);
+            this.label4.Size = new System.Drawing.Size(46, 16);
             this.label4.TabIndex = 4;
             this.label4.Text = "Author";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -127,6 +127,7 @@
             // 
             this.AuthorTextBox.Location = new System.Drawing.Point(22, 422);
             this.AuthorTextBox.Name = "AuthorTextBox";
+            this.AuthorTextBox.ReadOnly = true;
             this.AuthorTextBox.Size = new System.Drawing.Size(181, 22);
             this.AuthorTextBox.TabIndex = 7;
             this.AuthorTextBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
@@ -144,7 +145,7 @@
             this.TotalLabel.AutoSize = true;
             this.TotalLabel.Location = new System.Drawing.Point(803, 243);
             this.TotalLabel.Name = "TotalLabel";
-            this.TotalLabel.Size = new System.Drawing.Size(40, 17);
+            this.TotalLabel.Size = new System.Drawing.Size(39, 16);
             this.TotalLabel.TabIndex = 9;
             this.TotalLabel.Text = "Total";
             this.TotalLabel.Click += new System.EventHandler(this.label5_Click);
@@ -154,7 +155,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(803, 198);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(118, 17);
+            this.label6.Size = new System.Drawing.Size(114, 16);
             this.label6.TabIndex = 10;
             this.label6.Text = "Complete by date";
             this.label6.Click += new System.EventHandler(this.label6_Click);
@@ -190,7 +191,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(22, 332);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 17);
+            this.label7.Size = new System.Drawing.Size(47, 16);
             this.label7.TabIndex = 13;
             this.label7.Text = "Notes:";
             this.label7.Click += new System.EventHandler(this.label7_Click);
@@ -214,7 +215,7 @@
             this.TaskLabel.AutoSize = true;
             this.TaskLabel.Location = new System.Drawing.Point(25, 289);
             this.TaskLabel.Name = "TaskLabel";
-            this.TaskLabel.Size = new System.Drawing.Size(39, 17);
+            this.TaskLabel.Size = new System.Drawing.Size(39, 16);
             this.TaskLabel.TabIndex = 16;
             this.TaskLabel.Text = "Task";
             // 
@@ -223,7 +224,7 @@
             this.PaymentLabel.AutoSize = true;
             this.PaymentLabel.Location = new System.Drawing.Point(637, 289);
             this.PaymentLabel.Name = "PaymentLabel";
-            this.PaymentLabel.Size = new System.Drawing.Size(63, 17);
+            this.PaymentLabel.Size = new System.Drawing.Size(61, 16);
             this.PaymentLabel.TabIndex = 17;
             this.PaymentLabel.Text = "Payment";
             // 

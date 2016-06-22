@@ -37,6 +37,7 @@
             this.CompletionDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.taskID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // newButton
@@ -56,7 +57,8 @@
             this.Total,
             this.User,
             this.CreationDate,
-            this.CompletionDate});
+            this.CompletionDate,
+            this.taskID});
             this.FileBrowserListView.Location = new System.Drawing.Point(13, 27);
             this.FileBrowserListView.Name = "FileBrowserListView";
             this.FileBrowserListView.Size = new System.Drawing.Size(1027, 498);
@@ -107,6 +109,10 @@
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
             // 
+            // taskID
+            // 
+            this.taskID.Width = 0;
+            // 
             // fileBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -133,5 +139,6 @@
         private System.Windows.Forms.ColumnHeader CompletionDate;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.ColumnHeader taskID;
     }
 }
